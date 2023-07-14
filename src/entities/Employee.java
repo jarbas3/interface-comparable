@@ -1,5 +1,8 @@
 package entities;
 
+import java.text.Collator;
+import java.util.Locale;
+
 public class Employee implements Comparable<Employee> {
 
 	private String name;
@@ -28,6 +31,8 @@ public class Employee implements Comparable<Employee> {
 
 	@Override
 	public int compareTo(Employee o) {
-		return name.compareTo(o.getName());
+		Collator collator = Collator.getInstance(new Locale("pt", "BR"));
+		collator.setStrength(Collator.TERTIARY);
+		return collator.compare(name, o.getName());
 	}	
 }
